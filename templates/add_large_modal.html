@@ -1,0 +1,51 @@
+{% load widget_tweaks %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark my-2" data-bs-toggle="modal" data-bs-target="#add_large_modal">
+  大項目を追加
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="add_large_modal" tabindex="-1" role="dialog" aria-labelledby="AddLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="AddLargeModalLabel">大項目追加画面</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--ここから-->
+        <form method="POST" class="post-form" class="form-group">
+          <input type="hidden" name="form_type" value="large">
+          {{ large_form.non_field_errors }}
+
+          <label for="{{ large_form.title.id_for_label }}">大項目名：</label>
+          {% render_field large_form.title class="form-control" %}
+          <label for="{{ large_form.start.id_for_label }}">開始日：</label>
+          {% render_field large_form.start class="form-control" placeholder="YYYY-MM-DD" %}
+          <label for="{{ large_form.finish.id_for_label }}">完了日：</label>
+          {% render_field large_form.finish class="form-control" placeholder="YYYY-MM-DD" %}
+          <label for="{{ large_form.note.id_for_label }}">コメント：</label>
+          {% render_field large_form.note class="form-control" placeholder="必要に応じて記入" %}
+          <label for="{{ large_form.url_1.id_for_label }}">リンク：</label>
+          {% render_field large_form.url_1 class="form-control" placeholder="必要に応じて記入" %}
+          <label for="{{ large_form.url_2.id_for_label }}">リンク：</label>
+          {% render_field large_form.url_2 class="form-control" placeholder="必要に応じて記入" %}
+          <label for="{{ large_form.url_3.id_for_label }}">リンク：</label>
+          {% render_field large_form.url_3 class="form-control" placeholder="必要に応じて記入" %}
+
+
+
+          {{large_form.errors}}
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              キャンセル
+            </button>
+            <button type="submit" class="save btn btn-primary">追加する</button>
+          </div>
+        </form>
+        <!--ここまで-->
+      </div>
+    </div>
+  </div>
+</div>

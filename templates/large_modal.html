@@ -1,0 +1,58 @@
+{% load widget_tweaks %}
+
+<!--Middle Modal Start-->
+{% for each_large in large %}
+<div class="modal fade" id="large{{each_large.uuid}}" tabindex="-1" role="dialog" aria-labelledby="large{{each_large.uuid}}ModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="large{{each_large.uuid}}ModalLabel">大項目詳細</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--ここから-->
+        <h4 class="modal_task_title container col-md-12">{{each_large.title}}</h4>
+        <div class="row">
+          <div class="col-11">
+            {% if each_large.note %}
+            <p>{{each_large.note|linebreaksbr}}</p>
+            {% else %}
+            <p>未記入です</p>
+            {% endif %}
+          </div>
+          <div class="col-1">
+            {% if each_large.url_1 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_large.url_1}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <br>
+            {% if each_large.url_2 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_large.url_2}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <br>
+            {% if each_large.url_3 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_large.url_3}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <a href="{% url 'promane:large_delete' each_large.target_project.uuid each_large.uuid %}" role="button" class="btn btn-danger mx-auto d-block mt-2 mb-4"><i class="fas fa-trash-alt"></i></a>
+          </div>
+          <div class="row">
+            <div class="col-5 offset-1">
+              <a href="{% url 'promane:large_edit' each_large.target_project.uuid each_large.title %}" role="button" class="btn btn-success mx-auto d-block">編集</a>
+            </div>
+            <div class="col-5">
+              <a href="{% url 'promane:middle_create' each_large.target_project.uuid each_large.title %}" role="button" class="btn btn-warning mx-auto d-block">中項目を追加</a>
+            </div>
+          </div>
+        </div>
+        <!--ここまで-->
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!--Middle Modal End-->

@@ -1,0 +1,6 @@
+/migrations
+__pycache__
+__init__.py
+admin.py
+apps.py
+tests.py

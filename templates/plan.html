@@ -1,0 +1,29 @@
+{% for task in tasks_plan %}
+{% if task.plan_to_start > one_week_later %}
+  <p class="todo_box_light" data-bs-toggle="modal" data-bs-target="#task{{task.uuid}}">{{task.title}}
+    <br>
+    <i class="fa fa-calendar" aria-hidden="true"></i> {{task.plan_to_finish}}
+    {% for person in task.assign.all %}
+    <span class="badge bg-primary">{{person.name}}</span>
+    {% endfor %}
+  </p>
+{% else %}
+  {% if task.plan_to_start > today %}
+    <p class="todo_box_info" data-bs-toggle="modal" data-bs-target="#task{{task.uuid}}">{{task.title}}
+      <br>
+      <i class="fa fa-calendar" aria-hidden="true"></i> {{task.plan_to_finish}}
+      {% for person in task.assign.all %}
+      <span class="badge bg-primary">{{person.name}}</span>
+      {% endfor %}
+    </p>
+  {% else %}
+    <p class="todo_box_danger" data-bs-toggle="modal" data-bs-target="#task{{task.uuid}}">{{task.title}}
+      <br>
+      <i class="fa fa-calendar" aria-hidden="true"></i> {{task.plan_to_finish}}
+      {% for person in task.assign.all %}
+      <span class="badge bg-primary">{{person.name}}</span>
+      {% endfor %}
+    </p>
+  {% endif %}
+{% endif %}
+{% endfor %}

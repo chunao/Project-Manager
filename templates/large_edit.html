@@ -1,0 +1,32 @@
+{% extends 'promane_layout.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{%block title%}{{title}}{%endblock%}
+
+{% block main %}
+<div class="col-lg-7 offset-lg-2">
+  <form method="POST" class="post-form" class="form-group">
+    {{ large_edit_form.non_field_errors }}
+    <label for="{{ large_edit_form.title.id_for_label }}">大項目名：</label>
+    {% render_field large_edit_form.title class="form-control" %}
+    <label for="{{ large_edit_form.start.id_for_label }}">開始：</label>
+    {%render_field large_edit_form.start class="form-control"%}
+    <label for="{{ large_edit_form.finish.id_for_label }}">完了：</label>
+    {%render_field large_edit_form.finish class="form-control"%}
+    <label for="{{ large_edit_form.note.id_for_label }}">コメント：</label>
+    {%render_field large_edit_form.note class="form-control"%}
+    <label for="{{ large_edit_form.url_1.id_for_label }}">リンク：</label>
+    {% render_field large_edit_form.url_1 class="form-control" %}
+    <label for="{{ large_edit_form.url_2.id_for_label }}">リンク：</label>
+    {% render_field large_edit_form.url_2 class="form-control" %}
+    <label for="{{ large_edit_form.url_3.id_for_label }}">リンク：</label>
+    {% render_field large_edit_form.url_3 class="form-control" %}
+    {{large_edit_form.errors}}
+    {% csrf_token %}
+    <div class="row my-2">
+      <a href="{% url 'promane:project_detail' target_project_id %}" role="button" class="btn btn-secondary col-lg-4 offset-lg-1">キャンセル</a>
+      <button type="submit" class="save btn btn-primary col-lg-4 offset-lg-1">変更する</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

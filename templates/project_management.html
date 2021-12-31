@@ -1,0 +1,36 @@
+{% extends 'promane_layout.html' %}
+{% load static %}
+{%block title%}{{title}}{%endblock%}
+
+{% block main %}
+<div class="col-lg-5">
+  {% include 'tree.html' %}
+</div>
+<div class="col-lg-6">
+  <div class="row">
+    <div class="col">
+      {% include 'chart.html' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <h5 class="task-list-title">Ready</h5>
+      <div class="todo_board">
+      {% include 'plan.html' %}
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <h5 class="task-list-title">In Progress</h5>
+      <div class="todo_board">
+      {% include 'ongoing.html' %}
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <h5 class="task-list-title">Done</h5>
+      <div class="todo_board">
+      {% include 'done.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

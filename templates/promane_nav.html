@@ -1,0 +1,15 @@
+{% load static %}
+
+<nav>
+  <table class="table table-striped table-hover border">
+    <tr data-href="{% url 'promane:dashboard' %}" class="table_edit">
+      <th>Dashboard</th>
+    </tr>
+    {% for prj in project %}
+    <tr data-href="{% url 'promane:project_detail' prj.uuid %}" class="table_edit">
+      <td>{{prj.name}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% include 'add_project_modal.html' %}
+</nav>

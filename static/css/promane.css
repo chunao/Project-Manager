@@ -1,0 +1,153 @@
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.tree_large {
+  padding: 0.5rem 1rem;
+  border-left: 5px solid #000;
+  background: #f4f4f4;
+}
+
+.tree_large:hover {
+  background-color: lightyellow;
+  cursor: pointer;
+}
+
+.tree_middle {
+  margin-left: 20px;
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 5px grey;
+  border-bottom: solid 1px grey;
+}
+
+.tree_middle:hover {
+  background-color: lightyellow;
+  cursor: pointer;
+}
+
+.tree_task {
+  margin-left: 30px;
+}
+
+.tree_task:hover {
+  background-color: lightyellow;
+  cursor: pointer;
+}
+
+.todo_box_light {
+  padding: 0.3em 1em;
+  margin: 0.5em 0;
+  background: #fffafa;
+  border-left: solid 10px #c0c0c0;
+  transition: all 0.1s;
+}
+
+.todo_box_light:hover {
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+}
+
+.todo_box_info {
+  padding: 0.3em 1em;
+  margin: 0.5em 0;
+  background: #e0ffff;
+  border-left: solid 10px #00ffff;
+  transition: all 0.1s;
+}
+
+.todo_box_info:hover {
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+}
+
+.todo_box_warning {
+  padding: 0.3em 1em;
+  margin: 0.5em 0;
+  background: #ffffe0;
+  border-left: solid 10px #ffff00;
+  transition: all 0.1s;
+}
+
+.todo_box_warning:hover {
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+}
+
+.todo_box_danger {
+  padding: 0.3em 1em;
+  margin: 0.5em 0;
+  background: #ffc0cb;
+  border-left: solid 10px #dc143c;
+  transition: all 0.1s;
+}
+
+.todo_box_danger:hover {
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+}
+
+.todo_box_secondary {
+  padding: 0.3em 1em;
+  margin: 0.5em 0;
+  background: #d3d3d3;
+  border-left: solid 10px #000000;
+  transition: all 0.1s;
+}
+
+.todo_box_secondary:hover {
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+}
+
+.todo_board {
+  height: 450px;
+  padding: 0 5px 0 5px;
+  margin: 0 -10px 0 -10px;
+  background-color: #fff;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE, Edge 対応 */
+  scrollbar-width: none; /* Firefox 対応 */
+}
+
+.todo_board::-webkit-scrollbar {
+  /* Chrome, Safari 対応 */
+  display: none;
+}
+
+.modal_task_title {
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 5px grey;
+  border-bottom: solid 1px grey;
+}
+
+.nav_table {
+  padding: 0;
+}
+
+.table_edit {
+  cursor: pointer;
+}
+
+.md-expand {
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+.lg-transparent {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: transparent;
+  -ms-user-select: none; /* IE 10+ */
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.task-list-title {
+  color: black;
+}

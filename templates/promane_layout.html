@@ -1,0 +1,16 @@
+{% extends 'promane_base.html' %}
+{% load static %}
+
+{% block layout %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-1 nav_table">
+      {% include 'promane_nav.html' %}
+    </div>
+    {% block main %}
+    {% endblock %}
+  </div>
+</div>
+
+{% endblock %}

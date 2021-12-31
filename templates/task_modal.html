@@ -1,0 +1,78 @@
+{% load widget_tweaks %}
+
+<!--Task Modal Start-->
+{% for each_large in large %}
+{% for each_middle in each_large.middle_set.all %}
+{% for each_task in each_middle.task_set.all %}
+<div class="modal fade" id="task{{each_task.uuid}}" tabindex="-1" role="dialog" aria-labelledby="task{{each_task.uuid}}ModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="task{{each_task.uuid}}ModalLabel">実施項目詳細</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--ここから-->
+        <div class="modal_task_title container col-md-12">
+          <h6>{{each_large.title}} <i class="fas fa-caret-right"></i> {{each_middle.title}}</h6>
+          <h4><i class="fas fa-angle-double-right"></i> {{each_task.title}}</h4>
+        </div>
+        <div class="row">
+          <div class="col-11">
+            {% if each_task.note %}
+            <p class="modal_task_note">{{each_task.note|linebreaksbr}}</p>
+            {% else %}
+            <p class="modal_task_note">未記入です</p>
+            {% endif %}
+          </div>
+          <div class="col-1">
+            {% if each_task.url_1 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_task.url_1}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <br>
+            {% if each_task.url_2 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_task.url_2}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <br>
+            {% if each_task.url_3 %}
+            <button type="button" class="btn btn-outline-success my-2" onclick="copyTextToClipboard('{{each_task.url_3}}')" data-toggle="tooltip" data-placement="top" title="リンクをコピー">
+              <i class="fas fa-copy"></i>
+            </button>
+            {% endif %}
+            <a href="{% url 'promane:task_delete' each_large.target_project.uuid each_task.uuid %}" role="button" class="btn btn-danger mx-auto d-block mt-2 mb-4"><i class="fas fa-trash-alt"></i></a>
+          </div>
+          <div class="row">
+            {% if each_task.finish %}
+              <div class="col-10 offset-1">
+                <a href="{% url 'promane:task_edit' each_large.target_project.uuid each_task.title %}" role="button" class="btn btn-success mx-auto d-block">編集</a>
+              </div>
+            {% else %}
+              <div class="col-5 offset-1">
+                <a href="{% url 'promane:task_edit' each_large.target_project.uuid each_task.title %}" role="button" class="btn btn-success mx-auto d-block">編集</a>
+              </div>
+            {% endif %}
+            {% if each_task.finish %}
+            {% elif each_task.start %}
+              <div class="col-5">
+                <a href="{% url 'promane:task_finish' each_large.target_project.uuid each_task.uuid %}" role="button" class="btn btn-secondary mx-auto d-block">完了</a>
+              </div>
+            {% else %}
+              <div class="col-5">
+                <a href="{% url 'promane:task_start' each_large.target_project.uuid each_task.uuid %}" role="button" class="btn btn-warning mx-auto d-block">着手</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <!--ここまで-->
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endfor %}
+{% endfor %}
+<!--Task Modal End-->

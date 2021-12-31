@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>{%block title%}Index{%endblock%}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!--Font-->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!--Bootstrap5.0-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+  <!--OriginalCSS-->
+  <link rel="stylesheet" href="{% static 'css/promane.css'  %}" />
+
+</head>
+
+<body>
+  {%block layout%}{%endblock%}
+  <!--Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <!--Table Link-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+      jQuery(function ($) {
+        $("tbody tr[data-href]")
+          .addClass("clickable")
+          .click(function () {
+            window.location = $(this).attr("data-href");
+          })
+          .find("a")
+          .hover(
+            function () {
+              $(this).parents("tr").unbind("click");
+            },
+            function () {
+              $(this)
+                .parents("tr")
+                .click(function () {
+                  window.location = $(this).attr("data-href");
+                });
+            }
+          );
+      });
+  </script>
+
+  <!--Click to copy-->
+  <script>
+    function copyTextToClipboard(text) {
+      navigator.clipboard.writeText(text)
+      alert("コピーしました : " + text);
+     }
+  </script>
+</body>
+
+</html>

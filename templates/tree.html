@@ -1,0 +1,76 @@
+{% include 'add_large_modal.html' %}
+
+{% for each_large in large %}
+<h4 class="tree_large" data-bs-toggle="modal" data-bs-target="#large{{each_large.uuid}}">{{each_large.title}}</h4>
+{% for each_middle in each_large.middle_set.all %}
+<h5 class="tree_middle">
+  <span class="col-6" style="display: block; position: absolute;" data-bs-toggle="modal" data-bs-target="#middle{{each_middle.uuid}}">
+    {{each_middle.title}} <span class="badge bg-light text-dark">{{each_middle.plan_to_start}}</span> <i class="fas fa-angle-double-right"></i> <span class="badge bg-light text-dark">{{each_middle.plan_to_finish}}</span>
+    {% for each_task in each_middle.task_set.all %}
+      {% if each_task.start == None %}
+      {% else %}
+        {% if each_task.finish == None %}
+        <i class="fas fa-user" style="color:#ff7f50;"></i>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </span>
+  <span class="col-12">
+  {% if each_middle.task_set.all %}
+    <i class="fa fa-folder-open md-expand" aria-hidden="true" style="color: grey; cursor: pointer;" data-bs-toggle="collapse" href="#task{{each_middle.id}}" aria-expand="false" aria-controls="task{{each_middle.pk}}"></i>
+  {% endif %}
+  </span>
+  <span class="lg-transparent">.</span>
+</h5>
+<ul class="collapse" id="task{{each_middle.id}}">
+{% for each_task in each_middle.task_set.all %}
+  <li class="tree_task" data-bs-toggle="modal" data-bs-target="#task{{each_task.uuid}}">
+    <h6>{{each_task.title}}
+      {% for person in each_task.assign.all %}
+      <span class="badge bg-primary">{{person.name}}</span>
+      {% endfor %}
+      {% if each_task.finish %}
+        <span class="badge bg-secondary">{{each_task.start}}</span>
+        <i class="fas fa-angle-double-right"></i>
+        <span class="badge bg-secondary">{{each_task.finish}}</span>
+      {% else %}
+        {% if each_task.start %}
+          <span class="badge bg-warning text-dark">{{each_task.start}}</span>
+          <i class="fas fa-angle-double-right"></i>
+          {% if each_task.plan_to_finish > today %}
+            <span class="badge bg-light text-dark">{{each_task.plan_to_finish}}</span>
+          {% else %}
+            <span class="badge bg-danger">{{each_task.plan_to_finish}}</span>
+          {% endif %}
+        {% else %}
+          {% if each_task.plan_to_start > today %}
+            {% if each_task.plan_to_start > one_week_later %}
+              <span class="badge bg-light text-dark">{{each_task.plan_to_start}}</span>
+              <i class="fas fa-angle-double-right"></i>
+              <span class="badge bg-light text-dark">{{each_task.plan_to_finish}}</span>
+            {% else %}
+              <span class="badge bg-info text-dark">{{each_task.plan_to_start}}</span>
+              <i class="fas fa-angle-double-right"></i>
+              <span class="badge bg-light text-dark">{{each_task.plan_to_finish}}</span>
+            {% endif %}
+          {% else %}
+            <span class="badge bg-danger">{{each_task.plan_to_start}}</span>
+            <i class="fas fa-angle-double-right"></i>
+            {% if each_task.plan_to_finish > today %}
+              <span class="badge bg-light text-dark">{{each_task.plan_to_finish}}</span>
+            {% else %}
+              <span class="badge bg-danger">{{each_task.plan_to_finish}}</span>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </h6>
+  </li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% endfor %}
+
+{% include 'task_modal.html' %}
+{% include 'middle_modal.html' %}
+{% include 'large_modal.html' %}

@@ -1,0 +1,35 @@
+{% load widget_tweaks %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark btn-sm my-2 mx-auto d-block" data-bs-toggle="modal" data-bs-target="#add_project_modal">
+  Add Project
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="add_project_modal" tabindex="-1" role="dialog" aria-labelledby="AddProjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="AddProjectModalLabel">プロジェクト追加画面</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--ここから-->
+        <form method="POST" class="post-form" class="form-group">
+          <input type="hidden" name="form_type" value="project">
+          {{ project_form.non_field_errors }}
+          <label for="{{ project_form.name.id_for_label }}">プロジェクト名：</label>
+          {% render_field project_form.name class="form-control" %}
+          {{project_form.errors}}
+          {% csrf_token %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              キャンセル
+            </button>
+            <button type="submit" class="save btn btn-primary">追加する</button>
+          </div>
+        </form>
+        <!--ここまで-->
+      </div>
+    </div>
+  </div>
+</div>

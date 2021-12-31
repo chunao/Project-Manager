@@ -1,0 +1,40 @@
+{% extends 'promane_layout.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{%block title%}{{title}}{%endblock%}
+
+{% block main %}
+<div class="col-lg-7 offset-lg-2">
+  <form method="POST" class="post-form" class="form-group">
+    {{ create_task_form.non_field_errors }}
+    <label for="{{ create_task_form.title.id_for_label }}">実施項目名：</label>
+    {% render_field create_task_form.title class="form-control" %}
+    <label for="{{ create_task_form.difficulty.id_for_label }}">難易度：</label>
+    {%render_field create_task_form.difficulty class="form-control"%}
+    <label for="{{ create_task_form.plan_to_start.id_for_label }}">着手日_計画：</label>
+    {%render_field create_task_form.plan_to_start class="form-control" placeholder="YYYY-MM-DD" %}
+    <label for="{{ create_task_form.plan_to_finish.id_for_label }}">完了日_計画：</label>
+    {%render_field create_task_form.plan_to_finish class="form-control" placeholder="YYYY-MM-DD" %}
+    <label for="{{ create_task_form.start.id_for_label }}">着手日_実績：</label>
+    {%render_field create_task_form.start class="form-control" placeholder="YYYY-MM-DD" %}
+    <label for="{{ create_task_form.finish.id_for_label }}">完了日_実績：</label>
+    {%render_field create_task_form.finish class="form-control" placeholder="YYYY-MM-DD" %}
+    <label for="{{ create_task_form.note.id_for_label }}">コメント：</label>
+    {%render_field create_task_form.note class="form-control" placeholder="必要に応じて記入" %}
+    <label for="{{ create_task_form.url_1.id_for_label }}">リンク：</label>
+    {% render_field create_task_form.url_1 class="form-control" placeholder="必要に応じて記入" %}
+    <label for="{{ create_task_form.url_2.id_for_label }}">リンク：</label>
+    {% render_field create_task_form.url_2 class="form-control" placeholder="必要に応じて記入" %}
+    <label for="{{ create_task_form.url_3.id_for_label }}">リンク：</label>
+    {% render_field create_task_form.url_3 class="form-control" placeholder="必要に応じて記入" %}
+    <label for="{{ create_task_form.assign.id_for_label }}">担当：</label>
+    {% render_field create_task_form.assign class="form-control" %}
+    {{create_task_form.errors}}
+    {% csrf_token %}
+    <div class="row my-2">
+      <a href="{% url 'promane:project_detail' target_project_id %}" role="button" class="btn btn-secondary col-lg-4 offset-lg-1">キャンセル</a>
+      <button type="submit" class="save btn btn-primary col-lg-4 offset-lg-1">追加する</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

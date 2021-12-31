@@ -1,0 +1,9 @@
+{% for task in tasks_done%}
+<p class="todo_box_secondary" data-bs-toggle="modal" data-bs-target="#task{{task.uuid}}">{{task.title}}
+  <br>
+  <i class="fa fa-flag-checkered" aria-hidden="true"></i> {{task.finish}}
+  {% for person in task.assign.all %}
+  <span class="badge bg-primary">{{person.name}}</span>
+  {% endfor %}
+</p>
+{% endfor %}
